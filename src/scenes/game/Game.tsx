@@ -1,4 +1,4 @@
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, useMediaQuery } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { useHistory } from 'react-router-dom'
@@ -7,12 +7,14 @@ import { FallingWord } from '../../components/FallingWord'
 import { InfoPage } from '../../components/InfoPage'
 import { useWordsContext } from '../../context/wordsContext'
 import { PAGES } from '../../pages'
-import { MAX_WORDS } from '../../utils/constants'
+import { INITIAL_TIME, MAX_WORDS } from '../../utils/constants'
 export const Game = () => {
+	const matchesWidth = useMediaQuery('(min-width:600px)')
+
 	const history = useHistory()
 	const { words: allWords, reloadWords } = useWordsContext()
 	const [word, setWord] = useState('')
-	const [maxTime, setMaxTime] = useState(10)
+	const [maxTime, setMaxTime] = useState(INITIAL_TIME)
 	const [points, setPoints] = useState(0)
 	const [inputValue, setInputValue] = useState('')
 	const [lost, setLost] = useState(false)
@@ -85,26 +87,27 @@ export const Game = () => {
 				left: '50%',
 				top: '50%',
 				transform: 'translate3D(-50%,-50%,0)',
-				minWidth: 400,
+				minWidth: matchesWidth ? 400 : '80%',
+				maxWidth: '100%',
 			}}
 		>
 			<Box
 				display='flex'
 				alignItems='center'
 				justifyContent='space-between'
-				style={{ marginBottom: 80, width: 800 }}
+				style={{ marginBottom: 80, width: matchesWidth ? 800 : '100%' }}
 			>
 				<FallingWord
 					word={word}
 					style={{
-						fontSize: 60,
+						fontSize: matchesWidth ? 60 : 20,
 						fontFamily: 'arial',
 						textTransform: 'uppercase',
 					}}
 				/>
 				<CountdownCircleTimer
-					size={80}
-					strokeWidth={8}
+					size={matchesWidth ? 80 : 40}
+					strokeWidth={matchesWidth ? 8 : 4}
 					isPlaying
 					key={points}
 					duration={maxTime}
@@ -120,7 +123,7 @@ export const Game = () => {
 			</Box>
 			<BaseInput
 				autoFocus
-				style={{ textTransform: 'uppercase', width: '95%' }}
+				style={{ textTransform: 'uppercase', width: '95%', fontSize: matchesWidth ? 30 : 20 }}
 				value={inputValue}
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e?.target?.value)}
 			/>

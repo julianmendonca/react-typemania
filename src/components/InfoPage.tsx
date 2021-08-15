@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme } from '@material-ui/core'
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 
 type InfoPageType = {
 	title: string
@@ -15,6 +15,7 @@ export const InfoPage = ({
 	disabled = false,
 	onClick,
 }: InfoPageType) => {
+	const matchesWidth = useMediaQuery('(min-width:600px)')
 	const theme = useTheme()
 
 	return (
@@ -32,7 +33,7 @@ export const InfoPage = ({
 					textShadow: `3px 7px 10px ${theme.palette.primary.main}`,
 					fontFamily: 'Palette Mosaic, cursive',
 					color: '#fafafa',
-					fontSize: 150,
+					fontSize: matchesWidth ? 150 : 50,
 				}}
 			>
 				{title}
@@ -41,7 +42,7 @@ export const InfoPage = ({
 				style={{
 					marginTop: 40,
 					color: '#fafafa',
-					fontSize: 50,
+					fontSize: matchesWidth ? 50 : 20,
 				}}
 			>
 				{subtitle}
@@ -52,7 +53,7 @@ export const InfoPage = ({
 				variant='contained'
 				color='primary'
 				size='large'
-				style={{ marginTop: 60, fontSize: 30, fontWeight: 'bold' }}
+				style={{ marginTop: 60, fontSize: matchesWidth ? 30 : 15, fontWeight: 'bold' }}
 			>
 				{buttonLabel}
 			</Button>
