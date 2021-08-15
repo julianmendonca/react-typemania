@@ -33,9 +33,9 @@ export const Game = () => {
 	}, [points])
 
 	const handleInputChange = (text: string) => {
-		setInputValue(text)
-		if (word === text) {
-			setWord(allWords[points + 1])
+		setInputValue(text.toLowerCase())
+		if (word === text.toLowerCase()) {
+			setWord(allWords[points + 1].toLowerCase())
 			setPoints((prevPoints) => prevPoints + 1)
 			setInputValue('')
 		}
@@ -70,6 +70,7 @@ export const Game = () => {
 							setLost(false)
 							setPoints(0)
 							setMaxTime(10)
+							setInputValue('')
 							setDissabledButton(false)
 						})
 					}
