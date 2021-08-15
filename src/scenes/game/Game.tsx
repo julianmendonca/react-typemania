@@ -43,6 +43,7 @@ export const Game = () => {
 
 	const handleTimeOut = () => {
 		setWord('')
+		setMaxTime(INITIAL_TIME)
 		setLost(true)
 	}
 
@@ -69,7 +70,6 @@ export const Game = () => {
 							setWon(false)
 							setLost(false)
 							setPoints(0)
-							setMaxTime(10)
 							setInputValue('')
 							setDissabledButton(false)
 						})
