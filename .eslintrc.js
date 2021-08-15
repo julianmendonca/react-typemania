@@ -21,6 +21,9 @@ module.exports = {
 	},
 	plugins: ['react', 'prettier', 'import', '@typescript-eslint'],
 	rules: {
+		'react/jsx-uses-react': 'off',
+		'react/react-in-jsx-scope': 'off',
+		'jsx-quotes': ['error', 'prefer-single'],
 		'@typescript-eslint/no-unused-vars': [
 			'error',
 			{
@@ -41,7 +44,7 @@ module.exports = {
 				],
 			},
 		],
-		'no-console': 'error',
+		'no-console': 'warn',
 		'padding-line-between-statements': [
 			'error',
 			{ blankLine: 'always', next: 'return', prev: '*' },
@@ -56,6 +59,7 @@ module.exports = {
 			'error',
 			{
 				endOfLine: 'auto',
+				jsxSingleQuote: true,
 				printWidth: 100,
 				semi: false,
 				singleQuote: true,
@@ -64,17 +68,17 @@ module.exports = {
 				useTabs: true,
 			},
 		],
-		'react/jsx-sort-props': [
-			'error',
-			{
-				callbacksLast: true,
-				noSortAlphabetically: false,
-				reservedFirst: true,
-				shorthandFirst: true,
-			},
-		],
+		// 'react/jsx-sort-props': [
+		// 	'error',
+		// 	{
+		// 		callbacksLast: true,
+		// 		noSortAlphabetically: false,
+		// 		reservedFirst: true,
+		// 		shorthandFirst: true,
+		// 	},
+		// ],
 		'react/prop-types': 'off',
 		'react/self-closing-comp': 'error',
-		'sort-keys': ['warn', 'asc', { caseSensitive: true, minKeys: 2, natural: false }],
+		// 'sort-keys': ['warn', 'asc', { caseSensitive: true, minKeys: 2, natural: false }],
 	},
 }
